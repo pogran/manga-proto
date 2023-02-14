@@ -19,6 +19,6 @@ message RegisterResponse {
 
 	int32 status = 1;
 	optional Result errors = 2;
-	optional error = 3;
-	optional message = 4;
+	optional string error = 3;
+	optional string message = 4;
 }
