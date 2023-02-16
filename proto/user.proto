@@ -2,9 +2,12 @@ syntax="proto3";
 
 package user;
 
+import "google/protobuf/timestamp.proto";
+
 service UserService {
 	rpc findByEmail (findByEmailReq) returns (findByEmailRes) {}
 	rpc findOne (findOneReq) returns (findOneRes) {}
+	rpc create (User) returns (createRes) {}
 }
 
 message findByEmailReq {
@@ -17,10 +20,12 @@ message findOneReq {
 
 message User {
 	int32 id = 1;
-	optional string email = 2;
+	string email = 2;
 	optional string passwordHash = 3;
-	string name = 4;
+	string username = 4;
 	string role = 5;
+	google.protobuf.Timestamp createdAt = 6;
+	optional google.protobuf.Timestamp updatedAt = 7;
 }
 
 message findByEmailRes {
@@ -34,8 +39,16 @@ message findOneRes {
 		string email = 1;
 	}
 
-	optional string error = 1;
-	optional string message = 2;
-	optional User content = 3;
-	optional formErrors errors = 4;
+	int32 status = 1;
+	optional string error = 2;
+	optional string message = 3;
+	optional User content = 4;
+	optional formErrors errors = 5;
+}
+
+message createRes {
+	int32 status = 1;
+	optional string error = 2;
+	optional string message = 3;
+	optional User content = 4;
 }

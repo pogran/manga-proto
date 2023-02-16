@@ -1,9 +1,12 @@
 {
   "name": "@pogran/manga-proto",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "proto manga site",
   "author": "",
   "private": false,
   "license": "UNLICENSED",
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "google-protobuf": "^3.21.2"
+  }
 }

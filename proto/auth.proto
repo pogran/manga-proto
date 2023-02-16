@@ -17,7 +17,8 @@ message RegisterRes {
     optional string password = 2;
   }
 
-	optional FormError errors = 1;
-	optional string error = 2;
-	optional string message = 3;
+	int32 status = 1;
+	optional FormError errors = 2;
+	optional string error = 3;
+	optional string message = 4;
 }
