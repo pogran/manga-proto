@@ -3,22 +3,21 @@ syntax = "proto3";
 package auth;
 
 service AuthService {
-	rpc Register (RegisterRequest) returns (RegisterResponse) {}
+	rpc Register (RegisterReq) returns (RegisterRes) {}
 }
 
-message RegisterRequest {
+message RegisterReq {
 	string email = 1;
 	string password = 2;
 }
 
-message RegisterResponse {
+message RegisterRes {
 	message FormError {
     optional string email = 1;
     optional string password = 2;
   }
 
-	int32 status = 1;
-	optional FormError errors = 2;
-	optional string error = 3;
-	optional string message = 4;
+	optional FormError errors = 1;
+	optional string error = 2;
+	optional string message = 3;
 }
