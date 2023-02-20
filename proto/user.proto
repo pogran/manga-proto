@@ -5,9 +5,9 @@ package user;
 import "google/protobuf/timestamp.proto";
 
 service UserService {
-	rpc findByEmail (findByEmailReq) returns (findByEmailRes) {}
-	rpc findOne (findOneReq) returns (findOneRes) {}
-	rpc create (User) returns (createRes) {}
+	rpc FindByEmail (findByEmailReq) returns (findByEmailRes) {}
+	rpc FindOne (findOneReq) returns (findOneRes) {}
+	rpc Create (createReq) returns (createRes) {}
 }
 
 message findByEmailReq {
@@ -16,6 +16,13 @@ message findByEmailReq {
 
 message findOneReq {
 	int32 id = 1;
+}
+
+message createReq {
+	string email = 1;
+	optional string passwordHash = 2;
+	string username = 3;
+	string role = 4;
 }
 
 message User {
@@ -29,9 +36,10 @@ message User {
 }
 
 message findByEmailRes {
-	optional string error = 1;
-	optional string message = 2;
-	optional User content = 3;
+	int32 status = 1;
+	optional string error = 2;
+	optional string message = 3;
+	optional User content = 4;
 }
 
 message findOneRes {

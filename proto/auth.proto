@@ -4,9 +4,17 @@ package auth;
 
 service AuthService {
 	rpc Register (RegisterReq) returns (RegisterRes) {}
+	rpc Login (LoginReq) returns (LoginRes) {}
+	rpc Validate (ValidateReq) returns (ValidateRes) {}
 }
 
 message RegisterReq {
+	string username = 1;
+	string email = 2;
+	string password = 3;
+}
+
+message LoginReq {
 	string email = 1;
 	string password = 2;
 }
@@ -21,4 +29,35 @@ message RegisterRes {
 	optional FormError errors = 2;
 	optional string error = 3;
 	optional string message = 4;
+}
+
+message LoginContent {
+	string accessToken = 1; 
+}
+
+message LoginRes {
+	int32 status = 1;
+	optional string error = 2;
+	optional string message = 3;
+	optional LoginContent content = 4;
+}
+
+message ValidateReq {
+	string accessToken = 1; 
+}
+
+message ValidateContent {
+	int32 userId = 1; 
+	string email = 2;
+	string username = 3;
+	string role = 4;
+	int32 iat = 5;
+	optional int32 exp = 6;
+}
+
+message ValidateRes {
+	int32 status = 1;
+	optional string error = 2;
+	optional string message = 3;
+	optional ValidateContent content = 4;
 }
